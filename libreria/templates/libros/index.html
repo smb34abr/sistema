@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Listado de libros {% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        Listado de libros
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros %}
+                <tr>
+                    <th scope="row">{{ libro.id }}</th>
+                    <td>{{ libro.nombre }}</td>
+                    <td>{{ libro.precio }}</td>
+                    <td>
+                        <a href="{% url 'libros:editar' libro.id %}" class="btn btn-warning">Editar</a>
+                        <a href="{% url 'libros:eliminar' libro.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
